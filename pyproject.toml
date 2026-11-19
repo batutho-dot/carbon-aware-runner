@@ -1,0 +1,33 @@
+[project]
+name = "carbon-aware-runner"
+version = "0.1.0"
+description = "Start a heavy job in the cleanest (or cheapest) window before a deadline, for Danish price areas DK1 and DK2"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+keywords = ["carbon-aware", "co2", "electricity", "denmark", "scheduler", "cli"]
+dependencies = [
+    "energidata-mcp @ git+https://github.com/batutho-dot/energidata-mcp.git",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.urls]
+Repository = "https://github.com/batutho-dot/carbon-aware-runner"
+
+[project.scripts]
+carbon-run = "carbon_aware_runner.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/carbon_aware_runner"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
